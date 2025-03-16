@@ -51,7 +51,7 @@ export async function POST(req: Request) {
     await handleClerkUserEvent(evt)
     return NextResponse.json({ message: "Success" }, { status: 200 });
   } catch (error) {
-    return NextResponse.json({message:"db error"}, {status:500})
+    return NextResponse.json({message:"db error: " + error}, {status:500})
   }
   // const { id } = evt.data
   // const eventType = evt.type
