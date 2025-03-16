@@ -60,10 +60,7 @@ export default function AppSidebar() {
               <UserButton />
             </SignedIn>
           </div>
-          
-          
           </div>
-          
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => ( 
