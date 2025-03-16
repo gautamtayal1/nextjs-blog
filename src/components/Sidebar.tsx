@@ -1,3 +1,5 @@
+"use client"
+
 import { Calendar, Home, Inbox} from "lucide-react"
 
 import {
@@ -10,8 +12,11 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { SignInButton } from "@clerk/nextjs"
+import { SignInButton, SignedIn, SignedOut } from "@clerk/nextjs"
 import { Button } from "./ui/button"
+import { UserButton} from "@clerk/nextjs"
+import ModeToggle from "./theme-toggle"
+
 
 // Menu items.
 const items = [
@@ -47,7 +52,18 @@ export default function AppSidebar() {
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel className="font-bold">U Blog</SidebarGroupLabel>
+          <div className="flex justify-between items-center pr-2 ">
+          <SidebarGroupLabel className="font-sans font-black">U Blog</SidebarGroupLabel>
+          <div className="flex gap-2">
+            <ModeToggle />
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+          </div>
+          
+          
+          </div>
+          
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => ( 
@@ -58,14 +74,21 @@ export default function AppSidebar() {
                       <span>{item.title}</span>
                     </a>
                   </SidebarMenuButton>
+                  
                 </SidebarMenuItem>
               ))}
+              
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+      <SignedOut>
       <Button className="mb-3 mx-3" asChild>
         <SignInButton/>
+      </Button>
+      </SignedOut>
+      <Button className="mb-3 mx-3 p-10" asChild>
+        
       </Button>
       
     </Sidebar>
